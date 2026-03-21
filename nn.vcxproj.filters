@@ -18,7 +18,7 @@
     <ClCompile Include="mathEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="function_defs\mat_mul.cpp">
+    <ClCompile Include="function_defs\mat_comp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

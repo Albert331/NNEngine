@@ -67,3 +67,17 @@ std::vector<std::vector<float>> RELU(std::vector<std::vector<float>>& matrix) {
 	return matrix;
 
 }
+
+
+float Loss(const std::vector<std::vector<float>>& matrix1,const std::vector<std::vector<float>>& matrix2) {
+	float loss = 0.0f;
+	int row = matrix1.size();
+	int col = matrix2[0].size();
+	for (int i = 0; i < row; i++) {
+		for (int j = 0; j < col; j++) {
+			loss += square(matrix1[i][j] - matrix1[i][j]);
+		}
+	}
+	return loss / (row * col);
+
+}
