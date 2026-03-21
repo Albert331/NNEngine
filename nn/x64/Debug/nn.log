@@ -1,13 +1,13 @@
 ﻿  mat_comp.cpp
-C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(7,8): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(8,8): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(12,19): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(13,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(37,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(38,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(39,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(59,10): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(60,10): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  mathEngine.cpp
-  Generating Code...
+C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(12,8): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(13,8): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(17,19): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(18,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(42,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(43,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(44,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(64,10): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(65,10): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(79,10): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Albert\OneDrive\Desktop\nn\function_defs\mat_comp.cpp(80,10): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   nn.vcxproj -> C:\Users\Albert\OneDrive\Desktop\nn\x64\Debug\nn.exe

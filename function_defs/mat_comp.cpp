@@ -1,5 +1,10 @@
 #include "../header files/matrix_computation.h"
 
+inline float square(float x) {
+	return x * x;
+}
+
+
 std::vector<std::vector<float>> mat_mul(const std::vector<std::vector<float>>& matrix1,const std::vector<std::vector<float>>& matrix2) {
 	
 	if (matrix1.empty() || matrix2.empty()) return {};
@@ -75,9 +80,22 @@ float Loss(const std::vector<std::vector<float>>& matrix1,const std::vector<std:
 	int col = matrix2[0].size();
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < col; j++) {
-			loss += square(matrix1[i][j] - matrix1[i][j]);
+			loss += square(matrix1[i][j] - matrix2[i][j]);
 		}
 	}
-	return loss / (row * col);
+	return loss / (row*col);
 
+}
+
+std::vector<std::vector<float>> dLoss(const std::vector<std::vector<float>>& matrix1, const std::vector<std::vector<float>>& matrix2) {
+	int row = matrix1.size();
+	int col = matrix1[0].size();
+	std::vector<std::vector<float>> dloss(row, std::vector<float>(col));
+	
+	for (int i = 0; i < row; i++) {
+		for (int j = 0; j < col; j++) {
+			dloss[i][j] =(2/(row*col))* (matrix1[i][j]- matrix2[i][j]);
+		}
+	}
+	return dloss;
 }

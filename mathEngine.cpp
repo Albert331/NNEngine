@@ -20,11 +20,17 @@ int main() {
 	std::vector<std::vector<float>> WB2 = bias(XW2, b2);
 	std::vector<std::vector<float>> WA2 = RELU(WB2);
 
-	for (int i = 0; i < XW2.size(); i++) {
-		for (int j = 0; j < XW2[0].size(); j++) {
-			std::cout << WA2[i][j] << " ";
-		}
-		std::cout << std::endl;
-	}
+	
+
+	std::vector<std::vector<float>> expected = { {0.1f},{0.0f} };
+	float losss = Loss(WA2, expected);
+	std::cout << WA2[0][0] <<" " << WA2[1][0] << std::endl;
+	std::cout << losss;
+
+
+
+
+
+
 	return 0;
 }
