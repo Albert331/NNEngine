@@ -16,9 +16,14 @@ float Loss(const std::vector<std::vector<float>>& matrix1,const std::vector<std:
 
 std::vector<std::vector<float>> dLoss(const std::vector<std::vector<float>>& matrix1, const std::vector<std::vector<float>>& matrix2);
 
+std::vector<std::vector<float>> dRELU(const std::vector<std::vector<float>>& dA, const std::vector<std::vector<float>>& z);
 
+std::vector<std::vector<float>> dW(const std::vector<std::vector<float>>& dz, const std::vector<std::vector<float>>& a);
 
+std::vector<float> db(const std::vector<std::vector<float>>& dz);
 
+std::vector<std::vector<float>> dA_prev(const std::vector<std::vector<float>>& W, const std::vector<std::vector<float>>& dZ);
 
+std::vector<std::vector<float>> transpose(const std::vector<std::vector<float>>& matrix);
 
 #endif

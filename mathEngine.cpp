@@ -5,32 +5,58 @@
 
 int main() {
 
-	std::vector<std::vector<float>> X = { {1.0f, 2.0f},{3.0f, 4.0f} };
-	std::vector<std::vector<float>> W1 = { {0.5f, -0.2f, 0.1f}, {0.3f, 0.8f, -0.5f} };
-	std::vector<float> b1 = { 0.1f, 0.2f, 0.3f };
+    
 
-	std::vector<std::vector<float>> XW1 = mat_mul(X, W1);
-	std::vector<std::vector<float>> WB = bias(XW1, b1);
-	std::vector<std::vector<float>> WA = RELU(WB);
+        // ===== DATA =====
+        std::vector<std::vector<float>> X = { {1, 2, 3, 4} };
+        std::vector<std::vector<float>> Y = { {2, 4, 6, 8} };
 
-	std::vector<std::vector<float>> W2 = { {0.7f },{-0.3f},{0.5f} };
-	std::vector<float> b2 = { 0.2f };
+        // ===== PARAMETERS =====
+        std::vector<std::vector<float>> W = { {0.5f} }; // 1x1
+        std::vector<float> b = { 0.0f };
 
-	std::vector<std::vector<float>> XW2 = mat_mul(WA, W2);
-	std::vector<std::vector<float>> WB2 = bias(XW2, b2);
-	std::vector<std::vector<float>> WA2 = RELU(WB2);
+        float lr = 0.01f;
+        int epochs = 1000;
 
-	
+        for (int epoch = 0; epoch < epochs; epoch++) {
 
-	std::vector<std::vector<float>> expected = { {0.1f},{0.0f} };
-	float losss = Loss(WA2, expected);
-	std::cout << WA2[0][0] <<" " << WA2[1][0] << std::endl;
-	std::cout << losss;
+            // ===== FORWARD =====
+            auto Z = mat_mul(W, X);
+            Z = bias(Z, b);
 
+            auto A = Z; // identity activation
 
+            // ===== LOSS =====
+            float loss = Loss(A, Y);
 
+            // ===== BACKWARD =====
+            auto dA = dLoss(A, Y);
+            auto dZ = dA; // identity derivative
 
+            auto gradW = dW(dZ, X);
+            auto gradb = db(dZ);
 
+            // ===== UPDATE =====
+            for (int i = 0; i < W.size(); i++) {
+                for (int j = 0; j < W[0].size(); j++) {
+                    W[i][j] -= lr * gradW[i][j];
+                }
+            }
 
-	return 0;
-}
+            for (int i = 0; i < b.size(); i++) {
+                b[i] -= lr * gradb[i];
+            }
+
+            // ===== PRINT =====
+            if (epoch % 100 == 0) {
+                std::cout << "Epoch " << epoch
+                    << " Loss: " << loss
+                    << " W: " << W[0][0]
+                    << " b: " << b[0]
+                    << std::endl;
+            }
+
+        }
+        return 0;
+    }
+
