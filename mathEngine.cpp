@@ -5,58 +5,81 @@
 
 int main() {
 
-    
+    // ===== DATA =====
+    std::vector<std::vector<float>> X = { {1, 2, 3, 4} };
+    std::vector<std::vector<float>> Y = { {2, 4, 6, 8} };
 
-        // ===== DATA =====
-        std::vector<std::vector<float>> X = { {1, 2, 3, 4} };
-        std::vector<std::vector<float>> Y = { {2, 4, 6, 8} };
+    int m = X[0].size();
 
-        // ===== PARAMETERS =====
-        std::vector<std::vector<float>> W = { {0.5f} }; // 1x1
-        std::vector<float> b = { 0.0f };
+    // ===== PARAMETERS =====
+    int h = 3; // hidden neurons
 
-        float lr = 0.01f;
-        int epochs = 1000;
+    std::vector<std::vector<float>> W1 = { {0.5f}, {0.2f}, {-0.3f} };
+    std::vector<float> b1 = { 0.0f, 0.0f, 0.0f };
 
-        for (int epoch = 0; epoch < epochs; epoch++) {
+    std::vector<std::vector<float>> W2 = { {0.4f, -0.2f, 0.1f} };
+    std::vector<float> b2 = { 0.0f };
 
-            // ===== FORWARD =====
-            auto Z = mat_mul(W, X);
-            Z = bias(Z, b);
+    float lr = 0.05f;
+    int epochs = 2000;
 
-            auto A = Z; // identity activation
+    for (int epoch = 0; epoch < epochs; epoch++) {
 
-            // ===== LOSS =====
-            float loss = Loss(A, Y);
+        // ===== FORWARD =====
+        auto Z1 = bias(mat_mul(W1, X), b1);
+        auto A1 = RELU(Z1);
 
-            // ===== BACKWARD =====
-            auto dA = dLoss(A, Y);
-            auto dZ = dA; // identity derivative
+        auto Z2 = bias(mat_mul(W2, A1), b2);
+        auto A2 = Z2; // identity
 
-            auto gradW = dW(dZ, X);
-            auto gradb = db(dZ);
+        // ===== LOSS =====
+        float loss = Loss(A2, Y);
 
-            // ===== UPDATE =====
-            for (int i = 0; i < W.size(); i++) {
-                for (int j = 0; j < W[0].size(); j++) {
-                    W[i][j] -= lr * gradW[i][j];
-                }
+        // ===== BACKWARD =====
+        auto dA2 = dLoss(A2, Y);
+        auto dZ2 = dA2;
+
+        auto dW2_mat = dW(dZ2, A1);
+        auto db2_vec = db(dZ2);
+
+        auto dA1 = dA_prev(W2, dZ2);
+        auto dZ1 = dRELU(dA1, Z1);
+
+        auto dW1_mat = dW(dZ1, X);
+        auto db1_vec = db(dZ1);
+
+        // ===== UPDATE =====
+
+        // W2
+        for (int i = 0; i < W2.size(); i++) {
+            for (int j = 0; j < W2[0].size(); j++) {
+                W2[i][j] -= lr * dW2_mat[i][j];
             }
-
-            for (int i = 0; i < b.size(); i++) {
-                b[i] -= lr * gradb[i];
-            }
-
-            // ===== PRINT =====
-            if (epoch % 100 == 0) {
-                std::cout << "Epoch " << epoch
-                    << " Loss: " << loss
-                    << " W: " << W[0][0]
-                    << " b: " << b[0]
-                    << std::endl;
-            }
-
         }
-        return 0;
+
+        // b2
+        for (int i = 0; i < b2.size(); i++) {
+            b2[i] -= lr * db2_vec[i];
+        }
+
+        // W1
+        for (int i = 0; i < W1.size(); i++) {
+            for (int j = 0; j < W1[0].size(); j++) {
+                W1[i][j] -= lr * dW1_mat[i][j];
+            }
+        }
+
+        // b1
+        for (int i = 0; i < b1.size(); i++) {
+            b1[i] -= lr * db1_vec[i];
+        }
+
+        // ===== PRINT =====
+        if (epoch % 200 == 0) {
+            std::cout << "Epoch " << epoch
+                << " Loss: " << loss << std::endl;
+        }
     }
 
+    return 0;
+}
